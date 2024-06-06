@@ -35,9 +35,10 @@
     height: 100%;
 
     article {
-      mat-card{
+      mat-card {
         mat-card-header {
           margin-bottom: 10px;
+
           mat-card-title {
             font-family: "Inria Serif", serif;
             font-weight: 400;
@@ -45,53 +46,64 @@
             color: #F9A826;
           }
         }
-        mat-card-actions {
+
+        .login-form {
           display: flex;
           flex-direction: column;
-          gap: 13px;
-          justify-content: center;
-          .btn-login {
-            display: flex;
-            justify-content: space-evenly;
-            flex-direction: row-reverse;
-            color: #fff;
-            background-color: #F9A826;
-            border-radius: 15px;
-            width: 15vw;
-            height: 5vh;
-            font-family: "Quicksand", serif;
-            font-weight: 700;
-            font-size: 20px;
+          gap: 5px;
 
-            mat-icon {
+          mat-card-content {
+            display: flex;
+            flex-direction: column;
+          }
+
+          mat-card-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 13px;
+            justify-content: center;
+
+            .btn-login {
+              display: flex;
+              justify-content: space-evenly;
+              flex-direction: row-reverse;
+              color: #fff;
+              background-color: #F9A826;
+              border-radius: 15px;
+              width: 150px;
+              height: 40px;
+              font-family: "Quicksand", serif;
               font-weight: 700;
               font-size: 20px;
-            }
-          }
-          span {
-            font-size: 10px;
-            font-family: "Quicksand", serif;
-            font-weight: 400;
-          }
 
-          .btn-cadastrar {
-            color: #F9A826;
-            border: 1px solid #F9A826;
-            border-radius: 15px;
-            width: 13vw;
-            height: 4vh;
-            font-family: "Quicksand", serif;
-            font-weight: 700;
-            font-size: 15px;
+              mat-icon {
+                font-weight: 700;
+                font-size: 20px;
+              }
+            }
+
+            span {
+              font-size: 10px;
+              font-family: "Quicksand", serif;
+              font-weight: 400;
+            }
+
+            .btn-cadastrar {
+              color: #F9A826;
+              border: 1px solid #F9A826;
+              border-radius: 15px;
+              width: 130px;
+              height: 30px;
+              font-family: "Quicksand", serif;
+              font-weight: 700;
+              font-size: 15px;
+            }
           }
         }
       }
-      form {
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-      }
+
     }
+
     @media only screen and (max-width: 768px) {
       article {
         width: 100%;

@@ -9,23 +9,31 @@
         <mat-card-header>
           <mat-card-title>Login</mat-card-title>
         </mat-card-header>
+        <form class="login-form" [formGroup]="form" (ngSubmit)="handleSubmit()">
         <mat-card-content>
-          <form>
             <mat-form-field>
               <mat-label>E-mail</mat-label>
-              <input matInput>
+              <input matInput formControlName="email">
             </mat-form-field>
             <mat-form-field>
               <mat-label>Senha</mat-label>
-              <input matInput>
+              <input matInput [type]="hidden ? 'password' : 'text'" formControlName="password">
+              <button matSuffix mat-icon-button (click)="hidden= !hidden">
+                <mat-icon>
+                  @if (hidden) {
+                    visibility
+                  }@else {
+                    visibility_off
+                  }</mat-icon>
+              </button>
             </mat-form-field>
-          </form>
-        </mat-card-content>
-        <mat-card-actions>
-          <button mat-raised-button appearance="primary" size="lg" class="btn-login">Login <mat-icon>keyboard_arrow_right</mat-icon></button>
-          <span>Ou</span>
-          <button mat-raised-button appearance="outline" size="sm" class="btn-cadastrar">Cadastrar</button>
-        </mat-card-actions>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button type="submit" class="btn-login">Login <mat-icon>keyboard_arrow_right</mat-icon></button>
+            <span>Ou</span>
+            <button mat-raised-button (click)="redirectToSignUp()" class="btn-cadastrar">Cadastrar</button>
+          </mat-card-actions>
+        </form>
       </mat-card>
     </article>
   </main>

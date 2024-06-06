@@ -1,0 +1,122 @@
+.cadastrar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+  aside {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #F0F0F0;
+    height: 100%;
+    width: 100%;
+
+    img {
+      width: 13vw;
+    }
+
+    h1 {
+      font-family: "Inria Serif", serif;
+      font-weight: 400;
+      font-style: normal;
+      font-size: 52px;
+    }
+  }
+
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+
+    article {
+      mat-card {
+        mat-card-header {
+          margin-bottom: 10px;
+
+          mat-card-title {
+            font-family: "Inria Serif", serif;
+            font-weight: 400;
+            font-style: normal;
+            color: #F9A826;
+          }
+        }
+
+        .cadastrar-form {
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+
+          mat-card-content {
+            display: flex;
+            flex-direction: column;
+          }
+
+          mat-card-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 13px;
+            justify-content: center;
+
+            .btn-login {
+              display: flex;
+              justify-content: space-evenly;
+              flex-direction: row-reverse;
+              color: #fff;
+              background-color: #F9A826;
+              border-radius: 15px;
+              width: 150px;
+              height: 40px;
+              font-family: "Quicksand", serif;
+              font-weight: 700;
+              font-size: 20px;
+
+              mat-icon {
+                font-weight: 700;
+                font-size: 20px;
+              }
+            }
+
+            span {
+              font-size: 10px;
+              font-family: "Quicksand", serif;
+              font-weight: 400;
+            }
+
+            .btn-cadastrar {
+              color: #F9A826;
+              border: 1px solid #F9A826;
+              border-radius: 15px;
+              width: 130px;
+              height: 30px;
+              font-family: "Quicksand", serif;
+              font-weight: 700;
+              font-size: 15px;
+            }
+          }
+        }
+      }
+
+    }
+
+    @media only screen and (max-width: 768px) {
+      article {
+        width: 100%;
+      }
+    }
+
+    @media only screen and (min-width: 769px) {
+      article {
+        margin: 3em;
+        min-width: 300px;
+        max-width: 480px;
+      }
+    }
+
+  }
+}

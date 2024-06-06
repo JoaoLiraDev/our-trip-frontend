@@ -10,6 +10,10 @@ const routes: Routes = [
   {
     path: 'login',
     loadComponent: () => import('@pages/login/login.component').then(c => c.LoginComponent)
+  },
+  {
+    path: 'cadastrar',
+    loadComponent: () => import('@pages/cadastrar/cadastrar.component').then(c => c.CadastrarComponent)
   }
 ];
 

@@ -1,0 +1,56 @@
+<section class="cadastrar">
+  <aside class="cadastrar-background">
+    <img src="../../../assets/login.svg" alt="image login">
+    <h1>OurTrip</h1>
+  </aside>
+  <main class="right-side">
+    <article>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Cadastrar</mat-card-title>
+        </mat-card-header>
+        <form class="cadastrar-form" [formGroup]="form" (ngSubmit)="handleSubmit()">
+        <mat-card-content>
+            <mat-form-field>
+              <mat-label>Nome Completo</mat-label>
+              <input matInput formControlName="name">
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>E-mail</mat-label>
+              <input matInput formControlName="email">
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Senha</mat-label>
+              <input matInput [type]="hidden ? 'password' : 'text'" formControlName="password">
+              <button matSuffix mat-icon-button (click)="hidden= !hidden">
+                <mat-icon>
+                  @if (hidden) {
+                    visibility
+                  }@else {
+                    visibility_off
+                  }</mat-icon>
+              </button>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Confirmar Senha</mat-label>
+              <input matInput [type]="hidden ? 'password' : 'text'" formControlName="confirmPassword">
+              <button matSuffix mat-icon-button (click)="hidden= !hidden">
+                <mat-icon>
+                  @if (hidden) {
+                    visibility
+                  }@else {
+                    visibility_off
+                  }</mat-icon>
+              </button>
+            </mat-form-field>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button type="submit" class="btn-login">Cadastrar <mat-icon>keyboard_arrow_right</mat-icon></button>
+            <span>Ou</span>
+            <button mat-raised-button (click)="redirectToSignIn()" class="btn-cadastrar">Voltar</button>
+          </mat-card-actions>
+        </form>
+      </mat-card>
+    </article>
+  </main>
+</section>

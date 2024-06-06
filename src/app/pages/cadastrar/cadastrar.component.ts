@@ -8,15 +8,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { EMPTY, Observable, ReplaySubject, catchError, finalize, switchMap, tap } from 'rxjs';
 import { DEFAULT_FEEDBACK_MESSAGE } from '@shared/constant/default-feedback-message'
-import { LoginService } from './login.service'
+import { CadastrarService } from './cadastrar.service'
 import { Router } from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   standalone: true,
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss',
+  selector: 'app-cadastrar',
+  templateUrl: './cadastrar.component.html',
+  styleUrl: './cadastrar.component.scss',
   imports: [
     CommonModule,
     MatCardModule,
@@ -27,9 +27,9 @@ import {MatSnackBar} from '@angular/material/snack-bar';
     MatIconModule
   ]
 })
-export class LoginComponent implements OnDestroy {
+export class CadastrarComponent implements OnDestroy {
   private readonly _destroy = new ReplaySubject<void>(1);
-  private readonly _service = inject(LoginService);
+  private readonly _service = inject(CadastrarService);
   private readonly _router = inject(Router);
   loading = false;
   hidden = true;
@@ -37,8 +37,10 @@ export class LoginComponent implements OnDestroy {
   constructor(private _snackBar: MatSnackBar) {}
 
   form = new FormGroup({
+    name: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', Validators.required),
+    confirmPassword: new FormControl('', Validators.required),
   });
 
   ngOnDestroy(): void {
@@ -49,11 +51,11 @@ export class LoginComponent implements OnDestroy {
   handleSubmit(): void {
     this.loading = true;
     this.form.markAllAsTouched();
-    if (this.form.valid) {
+    if (this.form.valid && this._checkPassword()) {
       const body = this.form.value;
-      this._service.login(body)
+      this._service.newUser(body)
         .pipe(
-          switchMap((person) => this._router.navigateByUrl(`/pessoas/${ person.id }/visualizar`)),
+          switchMap(() => this._router.navigateByUrl(`/login`)),
           catchError(({ error }) => this._handleError(error?.detail)),
           finalize(() => this.loading = false)
         ).subscribe();
@@ -65,8 +67,13 @@ export class LoginComponent implements OnDestroy {
     return EMPTY;
   }
 
-  redirectToSignUp(){
-    this._router.navigateByUrl('/cadastrar');
+  private _checkPassword(){
+    if (this.form.controls['password'].value === this.form.controls['confirmPassword'].value) true
+    this.openSnackBar('As senhas não coincidem.')
+    return false
+  }
+  redirectToSignIn(){
+    this._router.navigateByUrl('/login');
   }
 
   openSnackBar(message: string) {

@@ -1,0 +1,26 @@
+<mat-card class="card">
+  <mat-card-header>
+    <div mat-card-avatar class="card-header-image"></div>
+    <mat-card-title>{{ data.name }}</mat-card-title>
+    <mat-card-subtitle
+      >{{ data.stars }} <mat-icon>star</mat-icon></mat-card-subtitle
+    >
+  </mat-card-header>
+  <img mat-card-image [src]="data.imageUrl" alt="" />
+  <mat-card-content>
+    <p [@bodyExpansion]="state" class="expandable-content">
+      {{ data.description }}
+    </p>
+    <p [@bodyExpansion]="state" class="expandable-content currency">
+      {{ data.price| currency }}
+    </p>
+    <mat-divider> </mat-divider>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-button (click)="toggle()" color="primary">Ver Descrição</button>
+    <button mat-button (click)="redirectToPurchase(data.id)" color="primary">
+      Comprar <mat-icon>shopping_cart</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>

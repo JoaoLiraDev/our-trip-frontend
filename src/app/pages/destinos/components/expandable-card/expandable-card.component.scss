@@ -1,0 +1,41 @@
+.card {
+  max-width: 500px;
+  margin: 50px auto auto auto;
+
+  &-header-image {
+    background-image: url('../../../../../assets/map.svg');
+    background-size: cover;
+  }
+
+  img{
+    height: 300px;
+
+  }
+  mat-card-header {
+    mat-card-subtitle {
+      display: flex;
+      align-items: center;
+      font-size: 16px;
+    }
+  }
+  mat-card-content {
+    border-radius: 8px;
+
+    .currency {
+      font-family: "Quicksand", serif;
+      font-weight: 400;
+      font-size: 15px;
+      font-style: italic;
+    }
+  }
+
+  mat-card-actions {
+    padding-left: 10px;
+    padding-right: 10px;
+    justify-content: space-between;
+  }
+}
+
+.expandable-content {
+  overflow: hidden;
+}

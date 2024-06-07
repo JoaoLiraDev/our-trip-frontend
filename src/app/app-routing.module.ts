@@ -5,7 +5,7 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'login'
+    redirectTo: 'destinos'
   },
   {
     path: 'login',
@@ -14,6 +14,10 @@ const routes: Routes = [
   {
     path: 'cadastrar',
     loadComponent: () => import('@pages/cadastrar/cadastrar.component').then(c => c.CadastrarComponent)
+  },
+  {
+    path: 'destinos',
+    loadComponent: () => import('@pages/destinos/destinos.component').then(c => c.DestinosComponent)
   }
 ];
 

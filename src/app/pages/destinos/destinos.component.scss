@@ -1,0 +1,22 @@
+
+mat-card {
+  margin: 50px auto auto auto;
+  width: 800px;
+
+  mat-card-header {
+    mat-card-title {
+      font-family: "Quicksand", serif;
+      font-weight: 600;
+      font-size: 30px;
+      margin: 10px 5px 10px 5px;
+      color: #F9A826;
+    }
+  }
+  mat-card-content {
+    border-radius: 8px;
+    background-color: #f9a826b0 !important;
+    height: 667px;
+    overflow: overlay;
+    scrollbar-width: none;
+  }
+}

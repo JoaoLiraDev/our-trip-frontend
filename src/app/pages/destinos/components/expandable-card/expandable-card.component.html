@@ -1,4 +1,4 @@
-<mat-card class="card">
+<mat-card class="card" *ngIf="data">
   <mat-card-header>
     <div mat-card-avatar class="card-header-image"></div>
     <mat-card-title>{{ data.name }}</mat-card-title>
@@ -19,7 +19,7 @@
 
   <mat-card-actions>
     <button mat-button (click)="toggle()" color="primary">Ver Descrição</button>
-    <button mat-button (click)="redirectToPurchase(data.id)" color="primary">
+    <button mat-button (click)="redirectToPurchase(data.id!)" color="primary">
       Comprar <mat-icon>shopping_cart</mat-icon>
     </button>
   </mat-card-actions>

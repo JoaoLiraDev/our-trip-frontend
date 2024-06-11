@@ -1,5 +1,5 @@
 
-import { Component, Input, OnDestroy, inject, } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, inject, } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
@@ -35,10 +35,13 @@ import { Destino } from '@pages/destinos/interfaces/destino.interface';
     CurrencyPipe
   ]
 })
-export class ExpandableCardComponent {
+export class ExpandableCardComponent implements OnInit {
   private _router = inject(Router);
   @Input() data!: Destino;
 
+  ngOnInit() {
+ console.log(this.data)
+  }
   panelOpenState = false;
   state = 'collapsed';
 

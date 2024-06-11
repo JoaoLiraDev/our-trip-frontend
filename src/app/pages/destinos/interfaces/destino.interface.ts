@@ -1,5 +1,5 @@
 export interface Destino {
-  id: string;
+  id?: string;
   imageUrl: string;
   name: string;
   stars?: string;

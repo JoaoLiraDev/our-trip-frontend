@@ -8,6 +8,18 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { HttpClientModule } from '@angular/common/http';
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CURRENCY_MASK_CONFIG, CurrencyMaskConfig } from 'ng2-currency-mask';
+import { provideNgxMask } from 'ngx-mask';
+
+export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
+  align: 'left',
+  allowNegative: true,
+  decimal: ',',
+  precision: 2,
+  prefix: 'R$ ',
+  suffix: '',
+  thousands: '.'
+};
 
 @NgModule({
   declarations: [
@@ -21,9 +33,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   ],
   providers: [
     provideAnimationsAsync(),
+    provideNgxMask(),
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline' } },
     { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 1500 } },
-    { provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL' }
+    { provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL' },
+    { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig }
   ],
   bootstrap: [AppComponent]
 })

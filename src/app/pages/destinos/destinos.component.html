@@ -4,8 +4,8 @@
       <mat-card-title>OurTrip - Destinos</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      @for (data of data$ | async ; track $index) {
-        <app-expandable-card [data]="data"></app-expandable-card>
+      @for (item of items ; track $index) {
+        <app-expandable-card [data]="item"></app-expandable-card>
       }
     </mat-card-content>
   </mat-card>

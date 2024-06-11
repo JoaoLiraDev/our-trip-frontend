@@ -18,6 +18,10 @@ const routes: Routes = [
   {
     path: 'destinos',
     loadComponent: () => import('@pages/destinos/destinos.component').then(c => c.DestinosComponent)
+  },
+  {
+    path: 'novo-destino',
+    loadComponent: () => import('@pages/novo-destino/novo-destino.component').then(c => c.NovoDestinoComponent)
   }
 ];
 

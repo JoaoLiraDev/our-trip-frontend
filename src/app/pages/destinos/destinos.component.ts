@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnDestroy, inject } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -8,10 +8,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { EMPTY, Observable, ReplaySubject, catchError, finalize, switchMap, tap } from 'rxjs';
 import { DEFAULT_FEEDBACK_MESSAGE } from '@shared/constant/default-feedback-message'
-import { DestinosService } from './destinos.service'
+import { DestinosService } from '@shared/services/destinos.service'
 import { Router } from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { ExpandableCardComponent } from './components/expandable-card/expandable-card.component';
+import { Destino } from './interfaces/destino.interface';
 
 @Component({
   standalone: true,
@@ -21,25 +22,29 @@ import { ExpandableCardComponent } from './components/expandable-card/expandable
   imports: [
     CommonModule,
     MatCardModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatIconModule,
     ExpandableCardComponent
   ]
 })
-export class DestinosComponent implements OnDestroy {
+export class DestinosComponent implements OnDestroy, OnInit {
   private readonly _destroy = new ReplaySubject<void>(1);
   private _service = inject(DestinosService);
 
-  data$ = this._service.getAllDestinos();
-
+  data$ = this._service.getAllDestinos().pipe();
+  items: Destino[] = [];
   constructor(private _snackBar: MatSnackBar) {}
 
   ngOnDestroy(): void {
     this._destroy.next();
     this._destroy.complete();
+  }
+
+  ngOnInit(): void {
+    this._service.getAllDestinos()
+      .pipe(
+        tap((items) => this.items = items),
+        catchError((err) => this._handleError(err))
+      )
+      .subscribe()
   }
 
   private _handleError(message = DEFAULT_FEEDBACK_MESSAGE): Observable<never> {

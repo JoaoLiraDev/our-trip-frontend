@@ -1,0 +1,63 @@
+<main class="destinos-frame">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>OurTrip - Novo Destinos</mat-card-title>
+    </mat-card-header>
+    <form [formGroup]="form" (ngSubmit)="handleSubmit()">
+      <mat-card-content>
+        <mat-form-field>
+          <mat-label>Nome Destino</mat-label>
+          <input matInput formControlName="name">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Estrelas</mat-label>
+          <input type="number" min="0" max="6" matInput formControlName="stars">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Preço</mat-label>
+          <input currencyMask matInput formControlName="price">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Descrição</mat-label>
+          <input max="255" matInput formControlName="description">
+        </mat-form-field>
+
+        <div class="upload" *ngIf="!filesUploaded.has(Thumb)">
+          <input
+            #inputThumb
+            type="file"
+            tabindex="2"
+            accept="{{ acceptDocumentsFiles }}"
+            (change)="onFileChange(inputThumb, Thumb)"
+          />
+          <div class="upload__description" *ngIf="showUploadContent()">
+            <mat-icon class="upload__icon--cloud">camera_alt</mat-icon>
+            <p class="upload__legend">Tire uma foto ou busque em seu dispositivo</p>
+            <p><strong>Tamanho máximo: </strong> 10 MB</p>
+          </div>
+        </div>
+
+        <section class="item-file" *ngIf="filesUploaded.get(Thumb)?.name">
+          <div class="item-file__row">
+            <div class="item-file__name">
+              <mat-icon> insert_drive_file </mat-icon>
+              <span style="text-align: left">
+                {{ filesUploaded.get(Thumb)?.name }}
+              </span>
+            </div>
+            <mat-icon class="item-file__delete" mat-icon-button (click)="removeFile(Thumb)">cancel</mat-icon>
+          </div>
+          <mat-progress-bar [mode]="progressStatus" value="100" color="primary"></mat-progress-bar>
+        </section>
+
+        <mat-error *ngIf="filesError.get(Thumb)?.error">Tipo de arquivo não suportado!</mat-error>
+        <mat-error *ngIf="filesError.get(Thumb)?.errorSize">Tamanho de arquivo não suportado!</mat-error>
+
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button type="reset" class="btn">Limpar <mat-icon>clear</mat-icon></button>
+        <button mat-raised-button type="submit" class="btn">Criar <mat-icon>save</mat-icon></button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</main>

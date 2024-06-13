@@ -53,7 +53,7 @@ export class LoginComponent implements OnDestroy {
       const body = this.form.value;
       this._service.login(body)
         .pipe(
-          switchMap((person) => this._router.navigateByUrl(`/pessoas/${ person.id }/visualizar`)),
+          switchMap(() => this._router.navigateByUrl(`/destinos`)),
           catchError(({ error }) => this._handleError(error?.detail)),
           finalize(() => this.loading = false)
         ).subscribe();

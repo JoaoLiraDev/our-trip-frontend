@@ -10,6 +10,6 @@ export class LoginService {
   private readonly _http = inject(HttpClient);
 
   login(data: any): Observable<any> {
-    return this._http.post<any>(`${ ENVIRONMENT.BaseUrl }/login`, data);
+    return this._http.post<any>(`${ ENVIRONMENT.BaseUrl }/auth/login`, data);
   }
 }

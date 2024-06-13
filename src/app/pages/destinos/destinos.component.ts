@@ -9,7 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { EMPTY, Observable, ReplaySubject, catchError, finalize, switchMap, tap } from 'rxjs';
 import { DEFAULT_FEEDBACK_MESSAGE } from '@shared/constant/default-feedback-message'
 import { DestinosService } from '@shared/services/destinos.service'
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { ExpandableCardComponent } from './components/expandable-card/expandable-card.component';
 import { Destino } from './interfaces/destino.interface';
@@ -22,7 +22,9 @@ import { Destino } from './interfaces/destino.interface';
   imports: [
     CommonModule,
     MatCardModule,
-    ExpandableCardComponent
+    ExpandableCardComponent,
+    MatIconModule,
+    RouterLink
   ]
 })
 export class DestinosComponent implements OnDestroy, OnInit {

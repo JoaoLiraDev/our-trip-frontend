@@ -68,7 +68,7 @@ export class CadastrarComponent implements OnDestroy {
   }
 
   private _checkPassword(){
-    if (this.form.controls['password'].value === this.form.controls['confirmPassword'].value) true
+    if (this.form.controls['password'].value === this.form.controls['confirmPassword'].value) return true
     this.openSnackBar('As senhas não coincidem.')
     return false
   }
